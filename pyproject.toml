@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "flow"
+version = "0.1.0"
+description = ""
+authors = ["vpcarlos <vpcarlos97@gmail.com>"]
+readme = "README.rst"
+
+[tool.poetry.scripts]
+flow = "flow.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typer = {extras = ["all"], version = "^0.4.0"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+autopep8 = "^1.5.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
