@@ -1,7 +1,12 @@
 import typer
 import os
+import subprocess
 
 from flow.models.flow import Feature
+from flow.models.shell import Shell as shell
+
+import git
+
 app = typer.Typer()
 
 
@@ -18,11 +23,11 @@ def publish():
     """
     Publish flow feature
     """
+
     Feature.command('publish')
+
 
 @app.command()
 def demo():
-
-    r = os.system('ls')
-
-    print(r)
+    res = Feature.get_flow_branch()
+    

@@ -1,4 +1,7 @@
 import os
+import git
+import typer
+repo = git.Repo.init()
 
 
 class Flow():
@@ -10,9 +13,21 @@ class Flow():
         return not error
 
     @classmethod
+    def get_flow_prefix(cls):
+
+        try:
+            res = repo.git.config(
+                '--get', f'gitflow.prefix.{cls.__name__.lower()}')
+        except git.exc.GitCommandError:
+            res = None
+            typer.echo('git flow not initialized')
+
+        return res
+    
+    @classmethod
     def get_flow_branch(cls):
-        error = os.system(
-            f'git config --get gitflow.prefix.{cls.__name__.lower()}')
+        prefix = cls.get_flow_prefix()
+
 
 
 class Feature(Flow):
